@@ -1,0 +1,443 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16433,        433]
+NotebookOptionsPosition[     14705,        403]
+NotebookOutlinePosition[     15043,        418]
+CellTagsIndexPosition[     15000,        415]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Lambda Calculus and Logic Functions", "Title",ExpressionUUID->"b6d275f0-2ffd-4555-abc0-57a0dda5bdd5"],
+
+Cell["\<\
+Based on one of the Numberphile lectures, we have the following definition of \
+True and False logical values in Lambda Function Forms. To avoid confusing \
+the word:\[CloseCurlyDoubleQuote]True\[CloseCurlyDoubleQuote], natively \
+defined in Mathematica, we define the logical \[OpenCurlyDoubleQuote]true\
+\[CloseCurlyDoubleQuote] value as head, and \[OpenCurlyDoubleQuote]false\
+\[CloseCurlyDoubleQuote] as tail. This naming convention, also reflects the \
+notion that a function the distinguishes the sequential arrangement input \
+arguments, can be used to construct universal computation.\
+\>", "Text",ExpressionUUID->"7497c7cc-2086-437d-906a-99a1fce77a2c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"head", " ", "=", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"tail", " ", "=", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", "y"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"booleanDomain", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{"head", ",", " ", "tail"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"isHeadQ", " ", "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{"x", ",", " ", 
+     RowBox[{"SameQ", "[", 
+      RowBox[{"head", ",", "x"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"isHead01", " ", "=", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{"x", ",", " ", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"SameQ", "[", 
+        RowBox[{"head", ",", " ", "x"}], "]"}], ",", " ", "\"\<1\>\"", ",", 
+       "\"\<0\>\""}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"not", " ", "=", " ", 
+    RowBox[{"Function", "[", 
+     RowBox[{"b", ",", 
+      RowBox[{"b", "[", 
+       RowBox[{"tail", ",", " ", "head"}], "]"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Testing", " ", "the", " ", "isHeadQ", " ", "function", " ", "over", " ", 
+    "the", " ", 
+    RowBox[{"booleanDomain", "."}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"isHeadQ", ",", " ", "booleanDomain"}], "]"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Testing", " ", "the", " ", "not", " ", 
+    RowBox[{"function", "."}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"not", ",", " ", "booleanDomain"}], "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",ExpressionUUID->\
+"9b023cf0-3a90-4cee-988f-47cee512c930"],
+
+Cell[BoxData["de"], "Input",ExpressionUUID->"ec31f386-728d-441d-be30-1ee7123101bb"],
+
+Cell["\<\
+Given the above definition, we can test the \[OpenCurlyDoubleQuote]not\
+\[CloseCurlyDoubleQuote] function, and see if it returns the right values.\
+\>", "Text",ExpressionUUID->"fe282bf3-ad59-4dd0-8064-78ca0291860f"],
+
+Cell["\<\
+Use the same technique, one may also define the function of \
+\[OpenCurlyDoubleQuote]and\[CloseCurlyDoubleQuote], \[OpenCurlyDoubleQuote]or\
+\[CloseCurlyDoubleQuote], ...\
+\>", "Text",ExpressionUUID->"e43d510a-1e32-4b42-a3c5-b7c5befffeec"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"and", " ", "=", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", 
+     RowBox[{"y", "[", 
+      RowBox[{"x", ",", "y"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"or", " ", "=", " ", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", 
+     RowBox[{"x", "[", 
+      RowBox[{"x", ",", "y"}], "]"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nand", "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", " ", 
+     RowBox[{"not", "[", 
+      RowBox[{"and", "[", 
+       RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nor", "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", 
+     RowBox[{"not", "[", 
+      RowBox[{"or", "[", 
+       RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xor", "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", " ", 
+     RowBox[{"or", "[", 
+      RowBox[{
+       RowBox[{"and", "[", 
+        RowBox[{"x", ",", "y"}], "]"}], ",", 
+       RowBox[{"not", "[", 
+        RowBox[{"or", "[", 
+         RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nxor", "=", 
+   RowBox[{"Function", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"x", ",", "y"}], "}"}], ",", " ", 
+     RowBox[{"not", "[", 
+      RowBox[{"or", "[", 
+       RowBox[{
+        RowBox[{"and", "[", 
+         RowBox[{"x", ",", "y"}], "]"}], ",", 
+        RowBox[{"not", "[", 
+         RowBox[{"or", "[", 
+          RowBox[{"x", ",", "y"}], "]"}], "]"}]}], "]"}], "]"}]}], "]"}]}], 
+  ";"}]}], "Input",ExpressionUUID->"00ba2737-ff8e-4c1c-8d13-5368e9cabc4a"],
+
+Cell["\<\
+We just defined the 6 functions: and, or, nand, nor, xor, xnor. These \
+functions all have two-inputs and one-output function signature. We can also \
+test them using all four different possible truth value combinations:\
+\>", "Text",ExpressionUUID->"95b61580-69fc-4513-b8f2-811339740ac5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"fourPossibilities", "=", 
+    RowBox[{"Tuples", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"head", ",", " ", "tail"}], "}"}], ",", " ", "2"}], "]"}]}], 
+   ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "*", " ", "We", " ", "can", " ", "try", " ", "to", " ", "test", " ", "one",
+     " ", 
+    RowBox[{"function", ":", 
+     RowBox[{"\"\<and\>\"", "."}]}]}], " ", 
+   "**)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Map", "[", 
+   RowBox[{"isHead", ",", 
+    RowBox[{"Apply", "[", 
+     RowBox[{"and", ",", " ", "fourPossibilities", ",", 
+      RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}], "//", 
+  "TableForm"}]}], "Input",ExpressionUUID->"d27c986a-22a3-4957-a324-\
+d551338ef915"],
+
+Cell["We can also map these functions as follows:", "Text",ExpressionUUID->"93ca6c88-a065-49f9-bf78-c07fc5da12ce"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"funcString", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<and\>\"", ",", "\"\<nand\>\"", ",", "\"\<or\>\"", ",", "\"\<nor\>\"",
+      ",", "\"\<xor\>\"", ",", "\"\<nxor\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"functionCount", " ", "=", " ", 
+   RowBox[{"Length", "[", "funcString", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"func", "=", " ", 
+   RowBox[{"Map", "[", 
+    RowBox[{"ToExpression", ",", " ", "funcString"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"functionArray", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "funcString", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}], 
+        "//", "ToUpperCase"}], ",", " ", 
+       RowBox[{"Map", "[", 
+        RowBox[{"isHead01", ",", 
+         RowBox[{"Apply", "[", 
+          RowBox[{
+           RowBox[{
+           "func", "\[LeftDoubleBracket]", "i", "\[RightDoubleBracket]"}], 
+           ",", " ", "fourPossibilities", ",", 
+           RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "functionCount"}], "}"}]}], "]"}]}], ";", 
+  RowBox[{"\[AliasDelimiter]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tabulatedArray", "=", 
+     RowBox[{"ArrayReshape", "[", 
+      RowBox[{
+       RowBox[{"Flatten", "[", "functionArray", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"functionCount", ",", "5"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"tabulatedArray", "=", 
+     RowBox[{"Insert", "[", 
+      RowBox[{"tabulatedArray", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Item", "[", 
+          RowBox[{"b", ",", 
+           RowBox[{"Background", "\[Rule]", "Red"}], ",", 
+           RowBox[{"Frame", "\[Rule]", "True"}]}], "]"}], ",", "1", ",", "0", 
+         ",", "1", ",", "0"}], "}"}], ",", "1"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"tabulatedArray", "=", 
+     RowBox[{
+      RowBox[{"Insert", "[", 
+       RowBox[{"tabulatedArray", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Item", "[", 
+           RowBox[{"a", ",", 
+            RowBox[{"Background", "\[Rule]", "Red"}], ",", 
+            RowBox[{"Frame", "\[Rule]", "True"}]}], "]"}], ",", "1", ",", "1",
+           ",", "0", ",", "0"}], "}"}], ",", "1"}], "]"}], "//", 
+      "Transpose"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Grid", "[", 
+     RowBox[{"tabulatedArray", ",", " ", 
+      RowBox[{"Frame", " ", "\[Rule]", " ", "All"}], ",", 
+      RowBox[{"Background", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"None", ",", 
+         RowBox[{"{", "Yellow", "}"}]}], "}"}]}]}], "]"}]}]}]}]}], "Input",Exp\
+ressionUUID->"3a9649e5-d66d-4a17-8ff1-7e9b3f75b568"],
+
+Cell["\<\
+One of the key ideas of writing this notebook, is to relate the notion that \
+Logical Operations, can be considered as a kind of minimalistic action \
+performed on information. Therefore, this branch of knowledge provides a way \
+to reason about what is the \[OpenCurlyDoubleQuote]Minimum Action\
+\[CloseCurlyDoubleQuote], or provides an information foundational approach to \
+the \[OpenCurlyDoubleQuote]Least Action Principle\[CloseCurlyDoubleQuote]. \
+Using the tools developed here, we might even be able to computationally \
+determine what functional representation are the best way to approach Least \
+Action Principle, as articulated by Leonard Susskind and George Hbrbovsky\
+\[CloseCurlyQuote]s Lecture 6, on Least Action Principle, in <Classical \
+Mechanics, The Theoretical Minimum>. Providing a link between Lagrangian, and \
+other ideas presented in physics, could provide a useful grounding metaphors \
+for readers to see why Least Action is reasonable in computing science, \
+therefore, having a non-physical way of establishing the legitimacy of \
+thinking of the Least Action Principle as the most general principles of all \
+principles.\
+\>", "Text",ExpressionUUID->"80feda06-a17e-4ffe-9763-5d4ff00b5fac"],
+
+Cell[BoxData[{
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"and", "[", 
+    RowBox[{"false", ",", " ", "false"}], "]"}], ",", 
+   RowBox[{"and", "[", 
+    RowBox[{"false", ",", " ", "true"}], "]"}], ",", 
+   RowBox[{"and", "[", 
+    RowBox[{"true", ",", " ", "false"}], "]"}], ",", 
+   RowBox[{"and", "[", 
+    RowBox[{"true", ",", " ", "true"}], "]"}]}], "}"}], "\[IndentingNewLine]", 
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"or", "[", 
+    RowBox[{"false", ",", " ", "false"}], "]"}], ",", 
+   RowBox[{"or", "[", 
+    RowBox[{"false", ",", " ", "true"}], "]"}], ",", 
+   RowBox[{"or", "[", 
+    RowBox[{"true", ",", " ", "false"}], "]"}], ",", 
+   RowBox[{"or", "[", 
+    RowBox[{"true", ",", " ", "true"}], "]"}]}], "}"}]}], "Input",ExpressionUU\
+ID->"a85b69ae-514e-46db-83cc-e15e19df1a51"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Map", "[", 
+    RowBox[{"isHead", ",", 
+     RowBox[{"Apply", "[", 
+      RowBox[{"nand", ",", " ", "fourPossibilities", ",", 
+       RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Map", "[", 
+    RowBox[{"isHead", ",", 
+     RowBox[{"Apply", "[", 
+      RowBox[{"nor", ",", " ", "fourPossibilities", ",", 
+       RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"nand", "[", 
+      RowBox[{"false", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"nand", "[", 
+      RowBox[{"false", ",", " ", "true"}], "]"}], ",", 
+     RowBox[{"nand", "[", 
+      RowBox[{"true", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"nand", "[", 
+      RowBox[{"true", ",", " ", "true"}], "]"}]}], "}"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"nor", "[", 
+      RowBox[{"false", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"nor", "[", 
+      RowBox[{"false", ",", " ", "true"}], "]"}], ",", 
+     RowBox[{"nor", "[", 
+      RowBox[{"true", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"nor", "[", 
+      RowBox[{"true", ",", " ", "true"}], "]"}]}], "}"}]}]}]], "Input",Express\
+ionUUID->"75616a2b-9c26-447a-9394-71cc84ac2152"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Map", "[", 
+    RowBox[{"isHead", ",", 
+     RowBox[{"Apply", "[", 
+      RowBox[{"xor", ",", " ", "fourPossibilities", ",", 
+       RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Map", "[", 
+    RowBox[{"isHead", ",", 
+     RowBox[{"Apply", "[", 
+      RowBox[{"nxor", ",", " ", "fourPossibilities", ",", 
+       RowBox[{"{", "1", "}"}]}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"xor", "[", 
+      RowBox[{"false", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"xor", "[", 
+      RowBox[{"false", ",", " ", "true"}], "]"}], ",", 
+     RowBox[{"xor", "[", 
+      RowBox[{"true", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"xor", "[", 
+      RowBox[{"true", ",", " ", "true"}], "]"}]}], "}"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"nxor", "[", 
+      RowBox[{"false", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"nxor", "[", 
+      RowBox[{"false", ",", " ", "true"}], "]"}], ",", 
+     RowBox[{"nxor", "[", 
+      RowBox[{"true", ",", " ", "false"}], "]"}], ",", 
+     RowBox[{"nxor", "[", 
+      RowBox[{"true", ",", " ", "true"}], "]"}]}], "}"}]}]}]], "Input",Express\
+ionUUID->"915cd387-4abc-4a79-a4cf-642c893acfc8"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"8f4b9eba-5b18-4a14-b680-2c4ffe03e2c1"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{556, Automatic}, {Automatic, 62}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 107, 0, 98, "Title",ExpressionUUID->"b6d275f0-2ffd-4555-abc0-57a0dda5bdd5"],
+Cell[690, 24, 671, 9, 127, "Text",ExpressionUUID->"7497c7cc-2086-437d-906a-99a1fce77a2c"],
+Cell[1364, 35, 2001, 59, 262, "Input",ExpressionUUID->"9b023cf0-3a90-4cee-988f-47cee512c930"],
+Cell[3368, 96, 83, 0, 30, "Input",ExpressionUUID->"ec31f386-728d-441d-be30-1ee7123101bb"],
+Cell[3454, 98, 225, 3, 35, "Text",ExpressionUUID->"fe282bf3-ad59-4dd0-8064-78ca0291860f"],
+Cell[3682, 103, 249, 4, 35, "Text",ExpressionUUID->"e43d510a-1e32-4b42-a3c5-b7c5befffeec"],
+Cell[3934, 109, 1999, 65, 136, "Input",ExpressionUUID->"00ba2737-ff8e-4c1c-8d13-5368e9cabc4a"],
+Cell[5936, 176, 299, 4, 58, "Text",ExpressionUUID->"95b61580-69fc-4513-b8f2-811339740ac5"],
+Cell[6238, 182, 763, 23, 73, "Input",ExpressionUUID->"d27c986a-22a3-4957-a324-d551338ef915"],
+Cell[7004, 207, 114, 0, 35, "Text",ExpressionUUID->"93ca6c88-a065-49f9-bf78-c07fc5da12ce"],
+Cell[7121, 209, 2843, 75, 241, "Input",ExpressionUUID->"3a9649e5-d66d-4a17-8ff1-7e9b3f75b568"],
+Cell[9967, 286, 1231, 17, 242, "Text",ExpressionUUID->"80feda06-a17e-4ffe-9763-5d4ff00b5fac"],
+Cell[11201, 305, 784, 21, 52, "Input",ExpressionUUID->"a85b69ae-514e-46db-83cc-e15e19df1a51"],
+Cell[11988, 328, 1307, 34, 115, "Input",ExpressionUUID->"75616a2b-9c26-447a-9394-71cc84ac2152"],
+Cell[13298, 364, 1307, 34, 115, "Input",ExpressionUUID->"915cd387-4abc-4a79-a4cf-642c893acfc8"],
+Cell[14608, 400, 81, 0, 30, "Input",ExpressionUUID->"8f4b9eba-5b18-4a14-b680-2c4ffe03e2c1"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
